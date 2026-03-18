@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>桌面机器人 · 面部表情</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1>桌面机器人</h1>
+      <p class="subtitle">和机器人对话 · 回答时会自动变表情并语音播放</p>
+    </header>
+
+    <section class="chat-section" aria-label="对话">
+      <div class="reply-box" id="replyBox" aria-live="polite">
+        <span class="reply-placeholder" id="replyPlaceholder">回复会显示在这里并朗读</span>
+        <p class="reply-text" id="replyText"></p>
+      </div>
+      <div class="input-row">
+        <input
+          type="text"
+          class="chat-input"
+          id="chatInput"
+          placeholder="输入消息或点击麦克风说话…"
+          autocomplete="off"
+          maxlength="500"
+        />
+        <button type="button" class="btn btn-mic" id="btnMic" title="语音输入">🎤</button>
+        <button type="button" class="btn btn-send" id="btnSend" title="发送">发送</button>
+      </div>
+      <p class="chat-hint" id="chatHint"></p>
+    </section>
+
+    <details class="settings">
+      <summary>设置（DeepSeek API Key）</summary>
+      <div class="settings-inner">
+        <label for="apiKey">API Key（仅存于本机，不会上传）</label>
+        <input type="password" class="api-key-input" id="apiKey" placeholder="sk-..." autocomplete="off" />
+        <button type="button" class="btn btn-save-key" id="btnSaveKey">保存</button>
+      </div>
+    </details>
+
+    <main class="face-container">
+      <div class="robot-head" id="robotHead">
+        <div class="antenna">
+          <span class="antenna-ball"></span>
+        </div>
+        <div class="face-panel">
+          <div class="eyes">
+            <div class="eye left">
+              <div class="pupil" id="pupilLeft"></div>
+              <div class="shine"></div>
+            </div>
+            <div class="eye right">
+              <div class="pupil" id="pupilRight"></div>
+              <div class="shine"></div>
+            </div>
+          </div>
+          <div class="eyebrows">
+            <div class="eyebrow left" id="eyebrowLeft"></div>
+            <div class="eyebrow right" id="eyebrowRight"></div>
+          </div>
+          <div class="mouth-wrapper">
+            <div class="mouth" id="mouth"></div>
+            <span class="mouth-heart" id="mouthHeart" aria-hidden="true">♥</span>
+          </div>
+          <div class="cheeks">
+            <span class="cheek left"></span>
+            <span class="cheek right"></span>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <nav class="expressions" aria-label="表情选择">
+      <button type="button" class="expr-btn active" data-expression="neutral" title="中性">😐 中性</button>
+      <button type="button" class="expr-btn" data-expression="happy" title="开心">😊 开心</button>
+      <button type="button" class="expr-btn" data-expression="sad" title="悲伤">😢 悲伤</button>
+      <button type="button" class="expr-btn" data-expression="angry" title="生气">😠 生气</button>
+      <button type="button" class="expr-btn" data-expression="surprised" title="惊讶">😲 惊讶</button>
+      <button type="button" class="expr-btn" data-expression="sleepy" title="困倦">😴 困倦</button>
+      <button type="button" class="expr-btn" data-expression="love" title="喜欢">🥰 喜欢</button>
+    </nav>
+
+    <footer class="footer">
+      <span class="current-expr" id="currentExpr">当前: 中性</span>
+      <span class="status" id="status"></span>
+    </footer>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
